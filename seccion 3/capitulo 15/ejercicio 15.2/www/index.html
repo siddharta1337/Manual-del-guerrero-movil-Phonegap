@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejercicio 15.2</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    
+    <script type="text/javascript" charset="utf-8">
+            
+        var lectura
+            
+        function mostrarOrientacion(){
+                
+            lectura = navigator.compass.watchHeading(lecturaExitosa, error, { frequency: 3000 } )
+                
+        }
+        function lecturaExitosa(orientacion) {
+            document.getElementById("resultados").innerHTML = " Orientacion: " + orientacion.magneticHeading + " Grados"
+        }
+        
+        function error(){
+            alert("No es posible leer la brujula")
+        }
+        
+        function detenerLectura(){
+            
+            navigator.compass.clearWatch(lectura);
+            lectura = null
+        }
+        
+        
+    </script>
+</head>
+<body>
+    <h1>Orientacion del dispositivo</h1>
+    
+    <div id="resultados"></div>
+    
+    <button onclick="mostrarOrientacion();">Mostrar Orientacion</button>
+    <button onclick="detenerLectura();">Detener Rastreo</button>
+    
+</body>
+</html>

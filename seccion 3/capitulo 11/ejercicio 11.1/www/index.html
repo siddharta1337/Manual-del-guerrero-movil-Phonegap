@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 11.1</title>
+        <meta charset="utf-8">
+            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+            
+            <script type="text/javascript" charset="utf-8">
+                //Notifica cuando el dispositivo esta listo
+                document.addEventListener("deviceready", onDeviceReady, false);
+                
+                
+                // el dispositivo esta listo
+                function onDeviceReady() {
+                    
+                    //muestra una ventana con el nombre del sistema operativo
+                    alert("Estás usando: "+device.platform);
+                    
+                    var archivoCSS
+                    
+                    switch(device.platform){
+                        
+                        case "iPhone":
+                            //muestra una hoja de estilos especifica para iPhone
+                            archivoCSS = "css/skin_iPhone.css";
+                        break;
+                            case "iPhone Simulator":
+                            //el emulador de iphone se muestra como otra plataforma
+                            archivoCSS = "css/skin_iPhone.css";;
+                        break;
+                            case "Android":
+                            //muestra una hoja de estilos especifica para iPhone
+                            archivoCSS = "css/skin_Android.css";
+                        break;
+                        default:
+                            // si no detecta equipo iPhone ni Android muestra esta version
+                            archivoCSS = "css/skin_Default.css";
+                        break;
+                        
+                    }
+                    
+                    var headID = document.getElementsByTagName("head")[0];         
+                    var cssNode = document.createElement('link');
+                    cssNode.rel = 'stylesheet';
+                    cssNode.href = archivoCSS;
+                    headID.appendChild(cssNode);
+                    
+                    
+                }
+                
+                </script>
+    </head>
+    <body>
+         
+    </body>
+</html>

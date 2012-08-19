@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            html { height: 100% }
+            body { height: 100%; margin: 0; padding: 0 }
+            #map_canvas { height: 100% }
+            </style>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <title>Ejercicio 17.1</title>
+        <script>
+            
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            function onDeviceReady() {
+                //solicita acceso al filesystem
+                
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, accesoFS);
+            }
+            
+            // tenemos acceso al filesystem
+            function accesoFS(fileSystem) {
+                
+                // busca o crea el directorio 
+                fileSystem.root.getFile("manualDelGuerreroMovil.txt", {create: true, exclusive: false},function(myFile){
+                                        
+                                        myFile.createWriter( function(escritor){
+                                                            escritor.write("mi vieja mula!!!")
+                                                            })
+                                        
+                                        }, function(){alert("fallo")})
+                
+            }
+            }          
+        </script>
+    </head>
+    <body >
+        
+        <button> Crear archivo </button>
+        
+        <button> leer archivo </button>
+        
+        <button> Borrar archivo</button>
+
+    </body>
+</html>

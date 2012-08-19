@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 14.3</title>
+        <meta charset="utf-8">
+            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+            <script type="text/javascript" charset="utf-8">
+                
+                var lecturaAccelerometro
+                
+                function mostrarPosicion(){
+                    
+                    lecturaAccelerometro = navigator.accelerometer.watchAcceleration(lecturaExitosa, manejoDeError, {frequency:3000} );
+                    
+                }
+                
+                function lecturaExitosa(acelerometro) {
+                    
+                    var texto  = " Posición X: "+ acelerometro.x + "<br>";
+                    texto += " Posición Y: "+ acelerometro.y + "<br>";
+                    texto += " Posición Z: "+ acelerometro.z + "<br>";
+                    
+                    document.getElementById("resultados").innerHTML = texto;
+                   
+                }
+                
+                
+                function manejoDeError(){
+                    // maneja el error de lectura
+                    alert("No se puede leer el acelerometro");
+                }
+                
+                
+                function detenerLectura(){
+                    navigator.accelerometer.clearWatch(lecturaAccelerometro);
+                    lecturaAccelerometro = null;
+                    
+                }
+                
+                
+                </script>
+    </head>
+    <body>
+        <div id="contenido"  >
+            <h1>Deteccion de Movimientos</h1>
+            
+            <div id="resultados"></div>
+        	<button onclick="mostrarPosicion()">Mostrar Movimientos</button>
+            <button onclick="detenerLectura()">Detener Lectura</button>
+            
+        </div>
+    </body>
+</html>

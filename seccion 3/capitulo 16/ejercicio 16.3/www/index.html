@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            html { height: 100% }
+            body { height: 100%; margin: 0; padding: 0 }
+            #map_canvas { height: 100% }
+            </style>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <title>Ejercicio 16.3</title>
+        
+        
+        <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?sensor=true">
+            </script>
+        <script type="text/javascript">
+            
+  
+            
+            var map
+            var marcador
+            
+            function initialize() {
+                var latlng = new google.maps.LatLng(-34.397, 150.644);
+                var myOptions = {
+                    zoom: 8,
+                    center: latlng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                map = new google.maps.Map(document.getElementById("map_canvas"),
+                                          myOptions);
+                
+                
+                marcador = new google.maps.Marker( {
+                                                  position: latlng,
+                                                  map:map	
+                                                  })
+            }
+            
+            function mostrarUbicacion(){
+                navigator.geolocation.getCurrentPosition( lecturaGPS , errorGPS , {enableHighAccuracy:true} )
+            }
+            
+            function lecturaGPS(ubicacion){
+                
+                var miubicacion = new google.maps.LatLng(ubicacion.coords.latitude, ubicacion.coords.longitude);
+                
+                map.setCenter(miubicacion)
+                marcador.setPosition(miubicacion)
+                
+            }
+            
+            function errorGPS(){
+                alert(" no puedo encontrarte :(")
+            }
+            
+            
+            </script>
+    </head>
+    <body onload="initialize()">
+        <div id="map_canvas" style="width:100%; height:90%"></div>
+        
+        <button onClick="mostrarUbicacion()"> mostrar mi ubicacion </button>
+    </body>
+</html>

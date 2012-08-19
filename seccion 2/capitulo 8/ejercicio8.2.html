@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>  
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2" />
+    	<title>Ejercicio 8.2</title>
+    	<meta charset="utf-8">
+   	 
+    	<style>
+        	#misCanvas{ background:#000;}
+        	body{ margin:0px; padding:0px;}
+    	</style>
+       	 
+	</head>
+	<body>         	 
+    	<canvas id="misCanvas" width="320" height="480" ></canvas>
+   	 
+    	<script type="text/javascript">
+       	 
+        	/// crea un intervalo que redibuja el círculo
+        	var animacion = setInterval("animar()",  1000);
+       	 
+        	// posiciones originales y velocidad de la animación
+        	var posX = 0;
+        	var posY = 0;
+        	var dx = 5;
+        	var dy = 5;
+       	 
+        	//tamaño de la figura
+        	var shapeSize = 50;
+       	 
+        	// selecciona el elemento canvas y lo convierte en una variable
+        	var canvas = document.getElementById("misCanvas");
+       	 
+        	/// selecciona el contexto 2D que usaremos para dibujar
+        	var contexto = canvas.getContext("2d");
+       	 
+       	 
+        	/// la función animar() se ejecutará cada ciclo del intervalo definido al inicio
+        	
+function animar(){
+           	
+			// Limpia el dibujo anterior
+            	contexto.clearRect(0, 0, canvas.width, canvas.height);
+           	 
+           	 
+            	/// Círculo
+            	contexto.beginPath();    
+            	contexto.arc(posX,posY,shapeSize,0,Math.PI*2,true);
+            	contexto.fillStyle = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+            	contexto.fill();
+           	 
+           	 
+            	// controla la posición, evita que los elementos salgan de vista
+            	if (posX + shapeSize > canvas.width || posX  < 0){
+                	dx = -dx;
+            	}   
+            	if (posY + shapeSize > canvas.height || posY  < 0){
+                	dy = -dy;
+            	}  
+            	posX += dx;
+            	posY += dy;   
+        	}      	 
+        	</script>
+	</body>
+</html>

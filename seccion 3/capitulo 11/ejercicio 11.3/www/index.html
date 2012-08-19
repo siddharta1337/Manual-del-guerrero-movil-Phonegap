@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 11.3</title>
+        <meta charset="utf-8">
+            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+            
+            <script type="text/javascript" charset="utf-8">
+                //Notifica cuando el dispositivo esta listo
+                document.addEventListener("deviceready", onDeviceReady, false);
+                
+                
+                // el dispositivo esta listo
+                function onDeviceReady() {
+                    
+                    /// obtiene el numero de identificacion 
+                    var identificacion = device.uuid
+                    
+                    //selecciona el elemento con el ID "informacion" y muestra los datos
+                    document.getElementById("informacion").innerHTML = "El UUID de este equipo es: <br>"+identificacion
+                    
+                    
+                    
+                }
+                
+                </script>
+    </head>
+    <body>
+         <p id="informacion"> </p>
+    </body>
+</html>

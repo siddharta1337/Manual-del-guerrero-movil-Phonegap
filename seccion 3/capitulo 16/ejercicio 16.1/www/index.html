@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 16.1</title>
+        <meta charset="utf-8">
+            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+            <script type="text/javascript" charset="utf-8">
+                
+                  
+                
+                function mostrarUbicacion(){
+                    
+                   navigator.geolocation.getCurrentPosition(lecturaExitosa, error,{ enableHighAccuracy: true });
+                    
+                }
+                
+                function lecturaExitosa(posicion) {
+                    alert(' tu posicion es: Latitud ' + posicion.coords.latitude+' ' + '  Longitud '+ posicion.coords.longitude )
+                }
+                
+                function error(){
+                    alert('no se donde estas');    
+                }
+                
+              
+                
+            </script>
+    </head>
+    <body>
+        <h1>Ubicación del dispositivo</h1>
+        
+        <div id="resultados"></div>
+        
+        <button onclick="mostrarUbicacion();">Mostrar Ubicación</button>
+        
+    </body>
+</html>

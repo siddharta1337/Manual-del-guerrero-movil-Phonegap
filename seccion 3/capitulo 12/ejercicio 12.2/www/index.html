@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 12.2</title>
+        <meta charset="utf-8">
+            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+            
+            
+            <script type="text/javascript" charset="utf-8">
+                
+                //muestra una alerta basica
+                
+                function mostrarAlerta1() {
+                    alert("alerta básica");
+                    return false;  
+                }
+                
+                //muestra una alerta personalizada
+                function mostrarAlerta2() {
+                    navigator.notification.alert('Esta es una alerta de PhoneGap', null,'Mi aplicacion', 'Aceptar');
+                }
+                 
+                // muestra un dialogo de confirmacion
+                function mostrarAlerta3() {
+                    navigator.notification.confirm('Desea aceptar las condiciones?', respuesta,'Mi aplicacion', 'Aceptar,Rechazar');
+                }
+                
+                // reacciona segun la respuesta del dialogo de confirmacion
+                function respuesta(boton) {
+                    if(boton == 1){
+                        alert("has aceptado las condiciones :)")
+                    }else if( boton == 2){
+                        alert( "no aceptas las condiciones :(" )
+                    }  
+                }
+                
+                
+            </script>
+    </head>
+    <body>
+        <button onclick="mostrarAlerta1();">Mostrar alerta basica</button> <br>
+        <button onclick="mostrarAlerta2();">Mostrar alerta personalizada</button><br>
+        <button onclick="mostrarAlerta3();">Mostrar dialogo de confirmacion</button>
+    </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <title>Ejercicio 19.2</title>
+            <script>
+               
+                var pictureSource;   // picture source
+                var destinationType; // sets the format of returned value
+                
+                // Wait for Cordova to connect with the device
+                //
+                document.addEventListener("deviceready",onDeviceReady,false);
+                
+                var _root
+                var _workingFolder
+                var _imagePath
+                
+                function onDeviceReady() {
+                    //solicita acceso al filesystem
+                    
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, accesoFS, fail);
+                }
+                
+                // tenemos acceso al filesystem
+                function accesoFS(fileSystem) {
+                    // busca o crea el directorio
+                    fileSystem.root.getDirectory("manualDelGuerreroMovil", {create: true, exclusive: false},function(myfolder){
+                                                 /// define el objeto del folder para utilizarlo posteriormente
+                                                 _workingFolder = myfolder;
+                                                 })
+                    
+                    _root = fileSystem.root
+                }
+                
+                function copiarFoto() {
+                    
+                    console.log(_imagePath)
+                    
+                    window.resolveLocalFileSystemURI(_imagePath,function(fileEntry){
+                                                     
+                                                     fileEntry.copyTo(_workingFolder , "miImagen.jpg");
+                                                     
+                                                     }, function(je){alert("fallo en la escritura"+je.code)}  );
+                    
+                    
+                }
+                
+                
+                
+                //////////
+                
+                
+                
+                
+                function error(message) {
+                    alert('error al tomar la foto : ' + message);
+                }
+                
+                function tomarFoto(){
+                    navigator.camera.getPicture( mostrarFoto, error, { quality : 75, destinationType : Camera.DestinationType.FILE_URI,   sourceType : Camera.PictureSourceType.CAMERA,   allowEdit : true,  encodingType: Camera.EncodingType.JPEG,  targetWidth: 100,  targetHeight: 100 } );
+                }
+                
+                function mostrarFoto(param){
+                    
+                    var imagen = document.getElementById("imagen")
+                    imagen.src = param;
+                    _imagePath = param;
+                    
+                }
+
+                
+                </script>
+            </head>
+    <body >
+        
+        <button onclick="tomarFoto()"> foto </button>
+        <img id="imagen" src="" /> 
+        
+        
+    </body>
+</html>

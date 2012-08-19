@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejercicio 7.2</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/hojaDeEstilos.css" >
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script>
+   	 document.addEventListener("deviceready", dispositivoListo, false);
+   	 
+   	 function dispositivoListo(){
+   		 alert(" tu dispositivo esta listo para usar la API de PhoneGap")
+   	 }    
+    </script>
+</head>
+
+<body>
+    <h1>Mi primer app</h1>
+    <button id="boton1"> Botón</button>
+    
+<script>
+    document.getElementById("boton1").onclick = function(){alert(" haz hecho click")}
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 13.1</title>
+        <meta charset="utf-8">
+            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+            <script type="text/javascript" charset="utf-8">
+                
+                
+                
+                // alert dialog dismissed
+                
+                function mostrarConeccion() {
+                    
+                    var networkState = navigator.network.connection.type;
+                    
+                    if (networkState == Connection.NONE){
+                        alert("no hay conexion a internet")
+                    }else{
+                        alert("Dispositivo conectado a internet usando: "+networkState)
+                    }
+                   
+                }
+                
+                </script>
+            </head>
+    <body>
+        <button onclick="mostrarConeccion();">Mostrar conexión</button>
+    </body>
+</html>

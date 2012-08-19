@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2" />
+        <title>Ejercicio 8</title>
+        <meta charset="utf-8">
+           
+            <link rel="stylesheet" href="js/jqueryMobile/jquery.mobile.theme-1.1.0.min.css" />
+            <script src="js/jquery-1.7.2.min.js"></script>
+            <script src="js/jqueryMobile/jquery.mobile-1.1.0.min.js"></script>
+            
+        </head>
+    <body>
+        
+        <div data-role="page" id="inicio" >      
+            <div data-role="header">
+                <h1> Inicio </h1>
+            </div>
+            
+            <a href="#pantalla2" data-role="button"> Ir a Pantalla 2 </a>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <div data-role="page" id="pantalla2">
+            
+                <div data-role="header">
+                    <h1> Pantalla 2 </h1>
+                </div>
+            
+                <a href="#" data-rel="back" data-role="button" > Regresar </a>
+           
+            
+            <ul data-role="listview" > 
+                <li><a href="#pantalla3"> Pantalla 1</a></li>
+                <li><a href="#pantalla3"> Pantalla 2 </a></li>
+                <li><a href="#pantalla3"> Pantalla 3 </a></li>
+                <li><a href="#pantalla3"> Pantalla 4 </a></li>
+                <li><a href="#pantalla3"> Pantalla 5 </a></li>
+                <li><a href="#pantalla3"> Pantalla 6 </a></li>
+            </ul>
+            
+            <div data-role="footer">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#pantalla1">Inicio</a></li>
+                        <li><a href="#pantalla2">Pantalla 2</a></li>
+                        <li><a href="#pantalla3">Otros</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div>
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        <div data-role="page" id="pantalla3">      
+            <h1> Pantalla 3 </h1>
+             <a href="#" data-rel="back" data-role="button" > Regresar </a>
+        </div>
+
+        
+       
+    </body>
+</html>

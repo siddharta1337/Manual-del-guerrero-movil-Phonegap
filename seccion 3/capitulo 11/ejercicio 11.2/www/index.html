@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 11.1</title>
+        <meta charset="utf-8">
+            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+            <script>
+                
+                document.addEventListener("deviceready", onDeviceReady, false);
+
+                
+                function onDeviceReady(){
+                    
+                    
+                    /* crea las variables que seran actualizadas segun la informacion del sistema*/
+                    var sistemaOperativo
+                    var numeroVersion;
+                    
+                    if(device.platform == "Android"){
+                        
+    
+                        sistemaOperativo = "Android";
+                        
+                        switch(device.version){
+                            case "2.1":
+                            numeroVersion = "Eclair";
+                            break;
+                            case "2.2":
+                            numeroVersion = "Froyo";
+                            break;
+                            case "2.3":
+                            numeroVersion = "Gingerbread";
+                            break;
+                            case "3.0":
+                            numeroVersion = "Honeycomb";
+                            break;
+                        }
+                        
+                        
+                    }else if(device.platform == "iPhone" || device.platform == "iPhone Simulator" ){
+                        
+                        sistemaOperativo = "iOS";
+                        numeroVersion = device.version;
+                        
+                    }
+                    
+                    
+                    /*selecciona el div "informacion" y le asigna contenido */
+                    document.getElementById("informacion").innerHTML= "Estás usando: "+sistemaOperativo + " con la version: " + numeroVersion  ;
+                    
+                }
+            </script>
+    </head>
+    <body>
+        <h1 id="informacion"></h1>
+    </body>
+</html>

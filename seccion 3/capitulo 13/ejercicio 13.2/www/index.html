@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 13.2</title>
+        <meta charset="utf-8">
+            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+            <script type="text/javascript" charset="utf-8">
+                
+                
+                
+                // alert dialog dismissed
+                
+                function mostrarImagen() {
+                    
+                    var networkState = navigator.network.connection.type;
+                    
+                    if (networkState == Connection.NONE){
+                        alert("no hay conexion a internet")
+                    }else{
+                        
+                        
+                        
+                        if(networkState == Connection.WIFI){
+                            // si la conexion es Wi-Fi carga una imagen de alta calidad(500kb)
+                            document.getElementById("imagen").setAttribute("src","img/tokioHD.jpg")
+                        }else{
+                            // si la conexion es por red celular carga una imagen de baja calidad(28kb)
+                           document.getElementById("imagen").setAttribute("src","img/tokioLD.jpg")
+                        }
+                        
+                    }
+                    
+                }
+                
+                </script>
+            </head>
+    <body>
+        <div>
+            <img id="imagen"/>
+        </div>
+        <button onclick="mostrarImagen();">Mostrar imagen segun conexion</button>
+    </body>
+</html>
