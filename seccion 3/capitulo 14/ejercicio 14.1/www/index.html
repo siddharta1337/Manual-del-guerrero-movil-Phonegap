@@ -2,37 +2,37 @@
 <html>
 <head>
     <title>Ejercicio 14.1</title>
-    <meta charset="utf-8">
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <script type="text/javascript" charset="utf-8">
+	<meta charset="utf-8">
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<script type="text/javascript">
  
-        function mostrarPosicion(){
-            navigator.accelerometer.getCurrentAcceleration(lecturaExitosa, manejoDeError);
-        }
-        
-        function lecturaExitosa(acelerometro) {
-            
-            var texto  = " Posición X: "+ acelerometro.x + "<br>";
-                texto += " Posición Y: "+ acelerometro.y + "<br>";
-                texto += " Posición Z: "+ acelerometro.z + "<br>";
-                    
-                document.getElementById("resultados").innerHTML = texto;
-        }
-                
-                
-        function manejoDeError(){
-            // maneja el error de lectura
-            alert("No se puede leer el acelerometro");
-        }
-                
-        </script>
+    	function mostrarPosicion(){
+     	navigator.accelerometer.getCurrentAcceleration(lecturaExitosa, manejoDeError);
+    	}
+   	 
+    	function lecturaExitosa(acelerometro) {
+       	 
+        	var texto  = " Posición X: "+ acelerometro.x + "<br>";
+            	texto += " Posición Y: "+ acelerometro.y + "<br>";
+            	texto += " Posición Z: "+ acelerometro.z + "<br>";
+               	 
+            	document.getElementById("resultados").innerHTML = texto;
+    	}
+           	 
+           	 
+    	function manejoDeError(){
+        	// maneja el error de lectura
+        	alert("No se puede leer el acelerometro");
+    	}
+           	 
+    	</script>
 </head>
 <body>
-    <div id="contenido"  >
-        <h1>Posicion del dispositivo</h1>
-            
-        <div id="resultados"></div>
-            <button onclick="mostrarPosicion();">Mostrar Posicion</button>
-    </div>
+	<div id="contenido"  >
+    	<h1>Posicion del dispositivo</h1>
+       	 
+    	<div id="resultados"></div>
+        	<button onclick="mostrarPosicion();">Mostrar Posicion</button>
+	</div>
 </body>
 </html>
