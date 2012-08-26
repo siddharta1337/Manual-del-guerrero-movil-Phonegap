@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Ejercicio 12.3</title>
-        <meta charset="utf-8">
-        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-            
-        <script type="text/javascript" >
-                function reproducirSonido() {
-                    navigator.notification.beep();
-                }
-                
-        </script>
-            
-    </head>
-    <body>
-        <button onclick="reproducirSonido();">Activar alerta</button> 
-    </body>
+    	<title>Ejercicio 12.3</title>
+    	<meta charset="utf-8">
+    	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+       	 
+    	<script type="text/javascript">
+            	function reproducirSonido(cantidad) {
+                	navigator.notification.beep(cantidad);
+            	}
+           	 
+    	</script>
+       	 
+	</head>
+	<body>
+    	<button onclick="reproducirSonido(3);">Activar alerta</button>
+	</body>
 </html>
