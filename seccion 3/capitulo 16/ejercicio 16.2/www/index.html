@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Ejercicio 16.2</title>
-        <meta charset="utf-8">
-            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-            <script type="text/javascript" charset="utf-8">
-                
-                 var llamada
-                
-                function mostrarUbicacion(){
-                    
-                  llamada =  navigator.geolocation.watchPosition(lecturaExitosa, error,{ frequency: 3000 , enableHighAccuracy: true });
-                    
-                }
-                
-                function lecturaExitosa(posicion) {
-                    document.getElementById("resultado").innerHTML = ' tu posicion es: Latitud ' + posicion.coords.latitude+' ' + '  Longitud '+ posicion.coords.longitude
-                }
-                
-                function error(){
-                    alert('no se donde estas');    
-                }
-                
-                function detenerLectura(){
-                    
-                    navigator.geolocation.clearWatch(llamada)
-                    llamada = null
-                }
-                
-                
-           </script>
-    </head>
-    <body>
-        <h1>Ubicación del dispositivo</h1>
-        
-        <div id="resultado"></div>
-        
-        <button onclick="mostrarUbicacion();">Mostrar Ubicación</button>
-        <button onclick="detenerLectura();">Detener Lectura </button>
-        
-    </body>
+    	<title>Ejercicio 16.2</title>
+    	<meta charset="utf-8">
+        	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        	<script type="text/javascript">
+           	    
+                   /// identificador de la llamada GPS
+             	var llamada
+           	 
+            	function mostrarUbicacion(){
+               	 
+              	llamada =  navigator.geolocation.watchPosition(lecturaExitosa, error,{ frequency: 3000 , enableHighAccuracy: true });
+               	 
+            	}
+           	 
+            	function lecturaExitosa(posicion) {
+                	document.getElementById("resultado").innerHTML = ' tu posicion es: Latitud ' + posicion.coords.latitude+' ' + '  Longitud '+ posicion.coords.longitude
+            	}
+           	 
+            	function error(){
+                	alert('no se donde estas');    
+            	}
+           	 
+            	function detenerLectura(){
+               	 	//detiene cualquier llamada vinculada al identificador
+                	navigator.geolocation.clearWatch(llamada)
+                	llamada = null
+            	}
+           	 
+           	 
+       	</script>
+	</head>
+	<body>
+    
+    	<h1>Ubicación del dispositivo</h1>
+   	 
+    	<div id="resultado"></div>
+   	 
+    	<button onclick="mostrarUbicacion();">Mostrar Ubicación</button>
+    	<button onclick="detenerLectura();">Detener Lectura </button>
+   	 
+	</body>
 </html>
