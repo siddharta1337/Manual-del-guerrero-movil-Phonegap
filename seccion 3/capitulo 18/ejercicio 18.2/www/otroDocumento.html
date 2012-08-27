@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta name="viewport" content="width=device-width"/>
+    	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    	<title>otro documento</title>
+        
+        <style>
+            button {
+                width: 90%;
+                height: 25px;
+                margin: 5px auto;
+            }
+            
+          
+        </style>
+        <script>
+            function borrarLocalStorage(){
+                 window.localStorage.removeItem("local")
+            }
+            function borrarSessionStorage(){
+                 window.sessionStorage.removeItem("session")
+            }
+           
+    	</script>
+	</head>
+	<body >
+        
+      <p>Al salir del documento anterior, borraste las variables normales, pero localstorage y sessionStorage siguen activas hasta que las borres.</p>
+        
+        <p> si cierras esta app, la variable sessionStorage tambien se elimina. </p>
+        
+        
+        <a href="index.html"> regresar </a>
+        
+        <button onclick="borrarLocalStorage()"> Borrar localstorage </button>
+        <button onclick="borrarSessionStorage()"> Borrar sessionStorage </button>
+        
+        
+	</body>
+</html>

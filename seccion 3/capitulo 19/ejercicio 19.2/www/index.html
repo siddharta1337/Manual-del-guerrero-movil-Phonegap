@@ -2,10 +2,15 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-        <title>Ejercicio 19.2</title>
+            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+            <title>Ejercicio 19.2</title>
+            <style>
+                body{text-align:center;}
+                button{ width:95%; height:35px}
+                h2{ font-size:14px}
+            </style>
             <script>
-               
+                
                 var pictureSource;   // picture source
                 var destinationType; // sets the format of returned value
                 
@@ -16,11 +21,12 @@
                 var _root
                 var _workingFolder
                 var _imagePath
+                var _localImagePath
                 
                 function onDeviceReady() {
                     //solicita acceso al filesystem
                     
-                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, accesoFS, fail);
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, accesoFS, error);
                 }
                 
                 // tenemos acceso al filesystem
@@ -29,20 +35,35 @@
                     fileSystem.root.getDirectory("manualDelGuerreroMovil", {create: true, exclusive: false},function(myfolder){
                                                  /// define el objeto del folder para utilizarlo posteriormente
                                                  _workingFolder = myfolder;
+                                                 alert("folder")
                                                  })
                     
                     _root = fileSystem.root
+                    
                 }
+                
+                 
                 
                 function copiarFoto() {
                     
-                    console.log(_imagePath)
+                    
+                    
+                     
                     
                     window.resolveLocalFileSystemURI(_imagePath,function(fileEntry){
+                                                                                                          
+                                                     fileEntry.copyTo(_workingFolder , "miImagen"+ Math.random() +".jpg" ,function(e){ 
+                                                                      
+                                                                      _localImagePath = e;
+                                                                      var imagen = document.getElementById("imagenGuardada")
+                                                                      imagen.src = _localImagePath.fullPath;
+                                                                      
+                                                                      } , function(e){ alert(e)});
                                                      
-                                                     fileEntry.copyTo(_workingFolder , "miImagen.jpg");
+                                                    
                                                      
-                                                     }, function(je){alert("fallo en la escritura"+je.code)}  );
+                                                     },
+                                                     function(je){alert("fallo en la escritura"+je.code)}  );
                     
                     
                 }
@@ -69,14 +90,22 @@
                     _imagePath = param;
                     
                 }
-
+                
                 
                 </script>
             </head>
     <body >
         
-        <button onclick="tomarFoto()"> foto </button>
-        <img id="imagen" src="" /> 
+        <button onclick="tomarFoto()"> Tomar Fotografia </button>
+        <h2> Captura:</h2>
+        <img id="imagen" src="" />
+        
+        <hr>
+        <button onclick="copiarFoto()"> Guardar imagen </button>
+       
+        
+        <h2> Ultima imagen guardada:</h2>
+        <img id="imagenGuardada" src="" />
         
         
     </body>

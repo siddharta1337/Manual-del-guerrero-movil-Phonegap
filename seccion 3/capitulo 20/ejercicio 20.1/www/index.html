@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+            <title>Ejercicio 20.1</title>
+            
+            <script>
+                
+                 
+                
+                
+                function crearContacto(){
+                    
+                    var nuevoContacto = navigator.contacts.create();
+                    var nombre = new ContactName();
+                        nombre.givenName = "Darth";
+                        nombre.familyName = "Vader";
+                    
+                    nuevoContacto.name = nombre
+                    
+                    var phoneNumbers = [];
+                    phoneNumbers[0] = new ContactField('work', '123-456-7890', false);
+                    phoneNumbers[1] = new ContactField('mobile', '123-456-7890', true);  
+                    phoneNumbers[2] = new ContactField('home', '123-456-7890', false);
+                    
+                    nuevoContacto.phoneNumbers = phoneNumbers;
+       
+                    var phoneNumbers = [];
+                    phoneNumbers[0] = new ContactField('work', '123-456-7890', false);
+                    
+                    
+                    var pics = []
+                    pics[0] = new ContactField('url', 'http://www.how-to-draw-cartoons-online.com/image-files/how-to-draw-darth-vader-link.gif', true);
+                    
+                    nuevoContacto.photos = pics
+                    
+                    
+                    
+                    nuevoContacto.save()
+                    
+                }
+                
+                
+                function verContactos(){
+                    var options = new ContactFindOptions();
+                    options.filter="";          // empty search string returns all contacts
+                    options.multiple=true;      // return multiple results
+                    filter = ["name","phoneNumbers"];   // return contact.displayName field
+                    
+                    // find contacts
+                    navigator.contacts.find(filter, onSuccess, false, options);
+                }
+                
+                function onSuccess(contacts) {
+                    for (var i=0; i<contacts.length; i++) {
+                        alert(contacts[i].name.givenName);
+                    }
+                };
+                </script>
+            </head>
+    <body >
+       
+        <button onclick="crearContacto()"> crear contacto nuevo </button>
+        <button onclick="verContactos()"> ver contactos </button>
+        
+    </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta name="viewport" content="width=device-width"/>
+    	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    	<title>Ejercicio 18.2</title>
+        
+        <style>
+            button {
+                width: 90%;
+                height: 25px;
+                margin: 5px auto;
+            }
+            
+          
+        </style>
+        
+    	<script>
+            var normal
+            
+            document.addEventListener("deviceready", onDeviceReady, false);
+            
+            
+            
+            function onDeviceReady(){
+                /// muestra las variables de sesion si existen
+                
+                mostrarVariables();
+            }
+            
+        	function crearLocalStorage(){
+                
+                window.localStorage.setItem("local", "variable localstorage activa");
+                mostrarVariables()
+            }
+            
+            function crearSessionStorage(){
+                window.sessionStorage.setItem("session","variable session activa");
+                mostrarVariables()
+                
+            }
+            
+            function crearNormal(){
+                normal = "valor normal";
+                mostrarVariables()
+            }
+            
+            function mostrarVariables(){
+                var texto = ""
+                
+                if(window.localStorage.getItem("local")){
+                    texto += "<li>"+ window.localStorage.getItem("local") + "</li>"
+                }
+                
+                if( window.sessionStorage.getItem("session")){
+                    texto += "<li>"+   window.sessionStorage.getItem("session")+ "</li>"
+                }
+                
+                if(normal){
+                    texto += "<li>"+  normal+ "</li>";
+                }
+                
+                
+                
+                // selecciona la lista del DOM
+                lista = document.getElementById("listaVariables");
+                lista.innerHTML = texto
+                
+            }
+            
+        </script>
+	</head>
+	<body >
+        
+        <button onclick="crearLocalStorage()">Crear variable localStorage</button>
+        <button onclick="crearSessionStorage()">Crear variable SessionStorage</button>
+        <button onclick="crearNormal()">Crear variable normal</button>
+        
+        <a href ="otroDocumento.html"> Abrir otro Documento </a>
+        
+        
+        <h1>Variables</h1>
+        <ul id="listaVariables">
+            
+        </ul>
+        
+	</body>
+</html>

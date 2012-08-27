@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta name="viewport" content="width=device-width"/>
+    	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    	<title>Ejercicio 18.1</title>
+        
+        <style>
+            button {
+                width: 90%;
+                height: 25px;
+                margin: 5px auto;
+            }
+            
+            ul{margin:0; padding:0; font-size:12px}
+            li{list-style-type:none; padding:10px 0; border-bottom: solid 1px #ccc }
+        </style>
+        
+    	<script>
+            
+        	document.addEventListener("deviceready", onDeviceReady, false);
+            
+         	var db
+            
+        	function onDeviceReady() {
+            	db = window.openDatabase("DemoDB", "1.0", "Demo Base de Datos", 200000);
+            	db.transaction(poblarBD, errorBD);
+        	}
+            
+            
+        	function poblarBD(tx) {
+                
+            	tx.executeSql('DROP TABLE IF EXISTS libros ');
+                
+                
+            	// si no existe la tabla libros, la crea y agrega 2 columnas.
+            	tx.executeSql('CREATE TABLE IF NOT EXISTS libros ( titulo, autor)');
+                
+                
+            	// Una vez creada la tabla, inserta entradas en ella
+            	tx.executeSql('INSERT INTO libros (titulo, autor) VALUES ("Manual del guerrero movil", "Carlos Solis")');
+            	tx.executeSql('INSERT INTO libros (titulo, autor) VALUES ("Abraham Lincoln: Cazador de Vampiros", "Seth Grahame-Smith")');
+            	tx.executeSql('INSERT INTO libros (titulo, autor) VALUES ("Alicia en el pais de las maravillas", "Lewis Caroll")');
+                
+        	}
+            
+            
+        	/*
+             function ejecutarPrimeraTransaccion(){
+             /// al finalizar correctamente esta transaccion se ejecuta la segunda transaccion
+             db.transaction(transaccion, errorCB, ejecutarSegundaTransaccion);
+             }
+             function ejecutarSegundaTransaccion(){
+             /// al finalizar correctamente esta transaccion se ejecuta la tercera transaccion
+             db.transaction(transaccion, errorCB, ejecutarTerceraTransaccion);
+             }
+             function ejecutarTerceraTransaccion(){
+             /// al finalizar correctamente esta transaccion se detiene el proceso.
+             db.transaction(transaccion, errorCB);
+             }
+             function transaccion(){
+             /// ejecutar una transaccion
+        	 
+             }
+             */
+            
+        	function leerBaseDeDatos(){
+            	// crea una nueva transaccion
+            	db.transaction(leerBD, errorBD);
+        	}
+            
+        	function leerBD(tx){
+                
+            	tx.executeSql('SELECT * FROM libros ', [] , mostrarResultados, errorBD);
+        	}
+            
+        	function mostrarResultados(tx, resultados){
+            	var lista = ""
+            	for(var a=0; a < resultados.rows.length; a++){
+                	lista += "<li>"
+                	lista += "<b>Titulo:</b> " + resultados.rows.item(a).titulo + "<br>";
+                	lista += "<b>Autor:</b> " + resultados.rows.item(a).autor + "<br>";
+                	lista += "</li>"
+            	}
+                
+            	document.getElementById("listaDeLibros").innerHTML = lista
+        	}
+            
+        	function agregarItem(){
+             	db.transaction(agregarItemSQL, errorBD)
+        	}
+            
+        	function agregarItemSQL(tx){
+            	tx.executeSql('INSERT INTO libros (titulo, autor) VALUES ("La importancia de llamarse Ernesto", "Oscar Wilde")', [] , leerBD, errorBD);
+        	}
+            
+        	function borarUltimo(){
+            	db.transaction(borrarItemSQL, errorBD)
+        	}
+            
+        	function borrarItemSQL(tx){
+            	tx.executeSql('DELETE FROM libros WHERE autor="Oscar Wilde"', [] , leerBD, errorBD);
+        	}
+            
+        	function errorBD(){
+            	alert("un error en la base de datos");
+        	}
+            
+            </script>
+	</head>
+	<body >
+        
+        <button onclick="leerBaseDeDatos()"> leer Base de datos </button>
+    	<button onclick="agregarItem()"> Insertar nuevo libro</button><br>
+
+    	<button onclick=" borarUltimo()"> Borrar libros de Oscar Wilde</button>
+        
+    	<h1> Libros </h1>
+    	<ul id="listaDeLibros">
+            
+    	</ul>
+        
+	</body>
+</html>

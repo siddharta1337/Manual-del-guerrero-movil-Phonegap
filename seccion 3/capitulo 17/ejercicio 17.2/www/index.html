@@ -2,25 +2,56 @@
 <html>
     <head>
         <style type="text/css">
-            html { height: 100% }
-            body { height: 100%; margin: 0; padding: 0 }
-            #map_canvas { height: 100% }
+            button, input{display:block; width:90%; height:35px; margin:10px auto; }
+            input{ text-align:center; font-size:15px; color:#666; }
             </style>
+        
         <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-        <title>Ejercicio 17.1</title>
+        <title>Ejercicio 17.2</title>
         <script>
             
             document.addEventListener("deviceready", onDeviceReady, false);
-
+            
+            var sistemaDeArchivos;
+            var rutaArchivo;
+            
             function onDeviceReady() {
                 //solicita acceso al filesystem
-                
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, accesoFS);
             }
             
             // tenemos acceso al filesystem
-            function accesoFS(fileSystem) {
+            function accesoFS(fs) {
+                sistemaDeArchivos = fs
+            }
+            
+            
+            function  crearArchivoVacio(){
+                // crea un archivo vacio 
+                sistemaDeArchivos.root.getFile("manualDelGuerreroMovil.txt", {create: true, exclusive: false}, function(_ruta){rutaArchivo = _ruta})                
+            }
+            
+            function escribirEnarchivo(){
                 
+                /// escribe los datos de la casilla de texto
+                rutaArchivo.createWriter( function(escritor){
+                                         contenido =  document.getElementById("textoArchivo").value
+                                         escritor.write(contenido)
+                                         })
+                
+            }
+            
+            function leerArchivo(){
+                
+                
+                var reader = new FileReader();
+                reader.onloadend = function(evt) {
+                    
+                    alert(evt.target.result);
+                };
+                reader.readAsText(rutaArchivo);
+                
+<<<<<<< HEAD
                 // busca o crea el directorio 
                 fileSystem.root.getFile("manualDelGuerreroMovil.txt", {create: true, exclusive: false},function(myFile){
                                         
@@ -29,18 +60,45 @@
                                                             })
                                         
                                         }, function(){alert("fallo")})
+=======
+>>>>>>> actualización AUG 27,2012
                 
             }
-            }          
-        </script>
+            
+            function leerInfo(){
+                rutaArchivo.getMetadata(function(_data){ alert("ultima modificacion: "+_data.modificationTime)})
+            }
+            
+            function borrarArchivo(){
+                
+                rutaArchivo.remove();
+            }
+            
+            </script>
     </head>
     <body >
         
-        <button> Crear archivo </button>
+        <button onclick="crearArchivoVacio()"> Crear archivo </button>
         
-        <button> leer archivo </button>
+        <hr>
         
-        <button> Borrar archivo</button>
-
+        <input type="text" id="textoArchivo" value="Texto de prueba" />
+        <button onclick="escribirEnarchivo()"> Escribir en archivo </button>
+        
+        <hr>
+        
+        <button onclick=" leerArchivo()"> Leer archivo </button>
+        
+        <hr>
+        
+        <button onclick="leerInfo()"> Leer Metadata </button>
+        
+        <hr>
+        
+        <button onclick=" borrarArchivo()"> Borrar archivo</button>
+        
+        <hr>
+        
+        
     </body>
 </html>

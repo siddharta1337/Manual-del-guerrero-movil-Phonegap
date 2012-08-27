@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
         <title>Ejercicio 19.1</title>
+        <style>
+            button{width:95%; height:35px;}
+        </style>
+        <meta charset="utf-8">
+            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
             <script>
                 var pictureSource;   // picture source
-                var destinationType; // sets the format of returned value
+                var destinationType; // sets the format of returned value 
                 
                 // Wait for Cordova to connect with the device
                 //
@@ -14,7 +17,7 @@
                 
                 
                 function onFail(message) {
-                    alert('Failed because: ' + message);
+                    alert('Error: ' + message);
                 }
                 
                 function tomarFoto(){
@@ -30,11 +33,9 @@
                 
                 </script>
             </head>
-    <body >
-        
-        <button onclick="tomarFoto()"> foto </button>
-        <img id="imagen" src="" /> 
-        
+    <body>
+        <button onclick="tomarFoto()"> Tomar Foto </button>
+        <img id="imagen" src="" />    
         
     </body>
 </html>
